@@ -16,11 +16,11 @@ ARG APPID=1829350
 ARG STEAM_BETAS
 ARG STEAM_EPOCH
 RUN ls -lha /vrising/.wine/drive_c/VRisingServer
-RUN steamcmd force_install_dir /vrising/.wine/drive_c/VRisingServer && \
-        login anonymous && \
-        app_update $APPID $STEAM_BETAS validate && \
-        app_update 1007 validate  && \
-        quit
+RUN steamcmd force_install_dir /vrising/.wine/drive_c/VRisingServer
+RUN steamcmd login anonymous
+RUN steamcmd app_update $APPID $STEAM_BETAS validate
+RUN steamcmd app_update 1007 validate
+RUN steamcmd quit
 WORKDIR /vrising/.wine/drive_c/VRisingServer
 VOLUME /vrising/.wine/drive_c/VRisingServer/server-data
 ENTRYPOINT ["/bin/bash", "/usr/local/bin/docker-entrypoint.sh"]
